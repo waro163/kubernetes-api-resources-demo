@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iris-deploy2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iris-deploy2pod
+      enabled: "true"
+  template:
+    metadata:
+      name: iris-deploy2pod
+      labels:
+        app: iris-deploy2pod
+        enabled: "true"
+    spec:
+      containers:
+        - image: 992744421/iris-demo
+          name: iris-demo
+          resources:
+            requests:
+              cpu: 100m

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iris-deploy-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iris-deploy
+      version: v1
+  template:
+    metadata:
+      name: iris-deploy
+      labels:
+        app: iris-deploy
+        version: v1
+    spec:
+      containers:
+        - image: 992744421/iris-demo-src
+          name: iris-demo
+          resources:
+            requests:
+              cpu: 100m

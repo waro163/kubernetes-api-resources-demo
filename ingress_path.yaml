@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: iris-ingress
+spec:
+  rules:
+   - host: as-test.mq.ink
+     http:
+       paths:
+         - path: /api/sparrow_begin/
+           backend:
+             serviceName: iris-demo1-svc
+             servicePort: 8001
+         - path: /api/sparrow_mid/
+           backend:
+             serviceName: iris-demo2-svc
+             servicePort: 8001
+#status:
+#  loadBalancer:
+#    ingress:
+#    - ip: 101.200.30.19

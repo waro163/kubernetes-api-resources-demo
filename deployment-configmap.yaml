@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iris-deploy3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iris-deploy3pod
+      enabled: "true"
+  template:
+    metadata:
+      name: iris-deploy3pod
+      labels:
+        app: iris-deploy3pod
+        enabled: "true"
+    spec:
+      containers:
+        - image: 992744421/iris-demo-src
+          name: iris-demo
+          resources:
+            requests:
+              cpu: 100m
+          envFrom:
+            - configMapRef:
+                name: iris-demo3-config-map
