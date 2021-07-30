@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  # name: job-default
+  name: register-schema
+spec:
+  activeDeadlineSeconds: 600
+  backoffLimit: 6
+  completions: 1
+  parallelism: 1
+  template:
+    spec:
+      containers:
+      # - name: job-default
+      #   image: luksa/batch-job
+      # restartPolicy: OnFailure
+      # restartPolicy: Never
+      - args:
+          - manage.py
+          - register_api_schema
+        command:
+          - python
+        envFrom:
+          # - configMapRef:
+          #     name: configuration-center-sparrow-app-manage
+          - configMapRef:
+              name: configuration-center-sparrow-cloud
+        image: >-
+          sparrow-registry-vpc.cn-beijing.cr.aliyuncs.com/sparrow/sparrow-app-manage:latest
+        imagePullPolicy: Always
+        name: register-schema
+      restartPolicy: OnFailure
