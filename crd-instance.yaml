@@ -1,0 +1,9 @@
+apiVersion: extensions.example.com/v1
+kind: Website
+metadata:
+  name: websites-ins
+  namespace: default
+spec:
+  myname: waro163
+  github: waro163@163.com
+  email: waro163@163.com
